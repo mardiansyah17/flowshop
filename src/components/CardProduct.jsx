@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function CardProduct() {
   return (
-    <div className="w-80 bg-white mx-auto shadow rounded">
+    <Link href={"/products/10"} className="w-80 bg-white mx-auto shadow rounded">
       {" "}
       <div
         className="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
@@ -43,6 +44,6 @@ export default function CardProduct() {
           </svg>{" "}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
