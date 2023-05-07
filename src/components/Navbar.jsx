@@ -10,9 +10,12 @@ export default function Navbar() {
   return (
     <nav className="flex items-center border-b border-gray-300 shadow-md  justify-end lg:justify-start  h-14 px-5">
       <ul className="hidden lg:flex lg:space-x-8 lg:items-center">
-        {navLInk.map((link) => {
+        {navLInk.map((link, idx) => {
           return (
-            <li className={`${router.asPath === link.href ? " text-blue-400 " : ""}`}>
+            <li
+              key={`navbarItemId.${idx}`}
+              className={`${router.asPath === link.href ? " text-blue-400 " : ""}`}
+            >
               <Link href={link.href}>{link.label}</Link>
             </li>
           );

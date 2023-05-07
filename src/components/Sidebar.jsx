@@ -14,9 +14,10 @@ export default function Sidebar() {
       }`}
     >
       <ul className="p-2">
-        {navLInk.map((link) => {
+        {navLInk.map((link, idx) => {
           return (
             <li
+              key={`sidebarItemId.${idx}`}
               onClick={() => onClose()}
               className={` p-3 mb-1 rounded-md hover:bg-gray-500 hover:bg-opacity-10 box-border ${
                 router.asPath === link.href ? "text-blue-500" : ""
