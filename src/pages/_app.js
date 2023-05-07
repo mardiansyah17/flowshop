@@ -7,7 +7,7 @@ import NextNProgress from "nextjs-progressbar";
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <NextNProgress color="blue" />
+      <NextNProgress color="blue" options={{ showSpinner: false }} />
       <Navbar />
       <Sidebar />
       <Component {...pageProps} />
