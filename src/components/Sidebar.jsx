@@ -20,7 +20,7 @@ export default function Sidebar() {
               key={`sidebarItemId.${idx}`}
               onClick={() => onClose()}
               className={` p-3 mb-1 rounded-md hover:bg-gray-500 hover:bg-opacity-10 box-border ${
-                router.asPath === link.href ? "text-blue-500" : ""
+                router.pathname.replace("/[id]", "") === link.href ? "text-blue-500" : ""
               }`}
             >
               <Link

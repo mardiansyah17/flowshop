@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = userSidebar();
   const router = useRouter();
+  // console.log(router.pathname.replace("/[id]", ""));
   return (
     <nav className="flex items-center border-b border-gray-300 shadow-md  justify-end lg:justify-start  h-14 px-5">
       <ul className="hidden lg:flex lg:space-x-8 lg:items-center">
@@ -14,7 +15,9 @@ export default function Navbar() {
           return (
             <li
               key={`navbarItemId.${idx}`}
-              className={`${router.asPath === link.href ? " text-blue-400 " : ""}`}
+              className={`${
+                router.pathname.replace("/[id]", "") === link.href ? " text-blue-400 " : ""
+              }`}
             >
               <Link href={link.href}>{link.label}</Link>
             </li>
