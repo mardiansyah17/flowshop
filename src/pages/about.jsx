@@ -33,7 +33,7 @@ const About = () => {
             <People name={"Kanero"} img={"/images/kanero.jpeg"} />
             <People name={"Yosandra saputri"} img={"/images/yosan.jpeg"} />
             <People name={"Dina"} img={"/images/dina.jpeg"} />
-            <People name={"Kanero"} img={"/images/kanero.jpeg"} />
+            <People name={"Xena"} img={"/images/xena.jpeg"} />
           </div>
           <p className="font-normal text-base leading-6 text-gray-600 ">
             Di FlowShop, kami bermula dari kecintaan pada keindahan bunga dan hasrat untuk
