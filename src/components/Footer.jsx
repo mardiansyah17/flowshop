@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <>
+    <div>
       {/*Footer container*/}
       <footer className="bg-neutral-200 text-center text-white ">
         <div className="w-full pt-9 ">
@@ -48,6 +48,6 @@ export default function Footer() {
           </a>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

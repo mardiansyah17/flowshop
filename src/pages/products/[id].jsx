@@ -1,10 +1,10 @@
+import { API_URL, STRAPI_URL } from "@/CONSTANT";
 import Image from "next/image";
-import React, { useState } from "react";
-
-const Page = () => {
+import React, { useEffect, useState } from "react";
+const Page = ({ id, title, description, price, thumbnail, images }) => {
   const [rotate, setRotate] = useState(false);
   const [count, setCount] = useState(0);
-
+  const [token, setToken] = useState();
   const addCount = () => {
     setCount((prev) => prev + 1);
   };
@@ -15,6 +15,41 @@ const Page = () => {
     }
   };
 
+  useEffect(() => {
+    const snapSrcUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+    const myMidtransClientKey = "SB-Mid-client-pYuzgpxcsfVL3ve5"; //change this according to your client-key
+
+    const script = document.createElement("script");
+    script.src = snapSrcUrl;
+    script.setAttribute("data-client-key", myMidtransClientKey);
+    script.async = true;
+
+    document.body.appendChild(script);
+    if (token) {
+      console.log(token);
+      window.snap.pay(token, {
+        onSuccess: function (result) {
+          console.log(result);
+        },
+        onPending: function (result) {
+          console.log(result);
+          /* You may add your own implementation here */
+        },
+        onError: function (result) {
+          console.log(result);
+          /* You may add your own implementation here */
+        },
+        onClose: function () {
+          console.log(result);
+          /* You may add your own implementation here */
+        },
+      });
+    }
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [token]);
+
   return (
     <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
       <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
@@ -22,7 +57,7 @@ const Page = () => {
 
         <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
           <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
-            Bunga keren
+            {title}
           </h2>
 
           <div className=" flex flex-row justify-between  mt-5">
@@ -98,42 +133,80 @@ const Page = () => {
             </p>
           </div>
 
-          <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-            Bunga ini sangat keren pesan sekarang selagi ada diskon
-          </p>
+          <p className=" font-normal text-base leading-6 text-gray-600 mt-7">{description}</p>
           <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            Rp100.000
+            Rp{price}
           </p>
 
-          <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center">
-            Pesan sekarang
+          <button
+            onClick={async () => {
+              console.log("first");
+              await fetch("/api/payment", {
+                method: "POST",
+              })
+                .then((res) => res.json())
+                .then((res) => setToken(res.token));
+            }}
+            className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center"
+          >
+            Order
           </button>
         </div>
 
         {/* <!-- Preview Images Div For larger Screen--> */}
 
         <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
-          <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center relative h-80">
-            <Image src="/images/bunga1.jpg" alt="bunga" fill />
+          <div className=" w-full   flex justify-center items-center relative h-80">
+            <Image
+              src={`${STRAPI_URL}${thumbnail}`}
+              className="object-contain  "
+              alt="bunga"
+              fill
+            />
           </div>
           <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-            <div className="bg-gray-100 flex justify-center items-center py-4 relative h-40">
-              <Image src="/images/bunga1.jpg" alt="bunga" fill />
-            </div>
-            <div className="bg-gray-100 flex justify-center items-center py-4 relative h-40">
-              <Image src="/images/bunga1.jpg" alt="bunga" fill />
-            </div>
-            <div className="bg-gray-100 flex justify-center items-center py-4 relative h-40">
-              <Image src="/images/bunga1.jpg" alt="bunga" fill />
-            </div>
-            <div className="bg-gray-100 flex justify-center items-center py-4 relative h-40">
-              <Image src="/images/bunga1.jpg" alt="bunga" fill />
-            </div>
+            {images.data.map((img, idx) => {
+              return (
+                <div
+                  key={`imagesId.${idx}`}
+                  className="bg-gray-100 flex justify-center items-center py-4 relative h-40"
+                >
+                  <Image src={`${STRAPI_URL}${img.attributes.url}`} alt="bunga" fill />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export async function getStaticPaths() {
+  const flowers = await fetch(`${API_URL}/flowers?populate`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+  const paths = flowers.map((flower) => ({
+    params: { id: String(flower.id) },
+  }));
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps(context) {
+  const flower = await fetch(`${API_URL}/flowers/${context.params.id}?populate=thumbnail,images`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+  const { title, description, price, thumbnail, images } = flower.attributes;
+  return {
+    props: {
+      id: flower.id,
+      title,
+      description,
+      price,
+      thumbnail: thumbnail.data.attributes.url,
+      images,
+    },
+  };
+}
 
 export default Page;

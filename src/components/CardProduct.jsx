@@ -1,15 +1,18 @@
+import { API_URL, STRAPI_URL } from "@/CONSTANT";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function CardProduct() {
+export default function CardProduct({ flower }) {
+  const thumbnail = flower.attributes.thumbnail.data.attributes;
+  const { title, price } = flower.attributes;
   return (
     <div className="w-80 bg-white mx-auto shadow rounded">
       {" "}
       <div
         className="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/images/bunga1.jpg")',
+          backgroundImage: `url("${STRAPI_URL}${thumbnail.url}")`,
         }}
       >
         {" "}
@@ -22,10 +25,10 @@ export default function CardProduct() {
         </div>{" "}
       </div>{" "}
       <div className="p-4 flex flex-col items-center">
-        <h1 className="text-gray-800 text-center mt-1">Bunga keren</h1>{" "}
-        <p className="text-center text-gray-800 mt-1">Rp200.000</p>{" "}
+        <h1 className="text-gray-800 text-center mt-1">{title}</h1>{" "}
+        <p className="text-center text-gray-800 mt-1">Rp{price}</p>{" "}
         <Link
-          href={"/products/1"}
+          href={`/products/${flower.id}`}
           className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center"
         >
           {" "}
