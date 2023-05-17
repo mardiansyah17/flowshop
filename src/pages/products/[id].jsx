@@ -134,9 +134,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
           </div>
 
           <p className=" font-normal text-base leading-6 text-gray-600 mt-7">{description}</p>
-          <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            Rp{price}
-          </p>
+          <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">{price}</p>
 
           <button
             onClick={async () => {
@@ -196,7 +194,11 @@ export async function getStaticProps(context) {
   const flower = await fetch(`${API_URL}/flowers/${context.params.id}?populate=thumbnail,images`)
     .then((res) => res.json())
     .then((res) => res.data);
-  const { title, description, price, thumbnail, images } = flower.attributes;
+  const { title, description, thumbnail, images } = flower.attributes;
+  const price = Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  }).format(flower.attributes.price);
   return {
     props: {
       id: flower.id,

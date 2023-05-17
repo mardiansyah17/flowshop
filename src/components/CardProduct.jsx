@@ -5,7 +5,11 @@ import React from "react";
 
 export default function CardProduct({ flower }) {
   const thumbnail = flower.attributes.thumbnail.data.attributes;
-  const { title, price } = flower.attributes;
+  const { title } = flower.attributes;
+  const price = Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  }).format(flower.attributes.price);
   return (
     <div className="w-80 bg-white mx-auto shadow rounded">
       {" "}
@@ -26,7 +30,7 @@ export default function CardProduct({ flower }) {
       </div>{" "}
       <div className="p-4 flex flex-col items-center">
         <h1 className="text-gray-800 text-center mt-1">{title}</h1>{" "}
-        <p className="text-center text-gray-800 mt-1">Rp{price}</p>{" "}
+        <p className="text-center text-gray-800 mt-1">{price}</p>{" "}
         <Link
           href={`/products/${flower.id}`}
           className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center"
