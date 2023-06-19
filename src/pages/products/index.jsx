@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 export default function Products({ flowers }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 p-3 sm:gap-8 grid-cols-1">
+    <div className="grid grid-cols-1 gap-5 p-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
       {flowers.map((flower, idx) => {
         return <CardProduct key={`cardProductId.${idx}`} flower={flower} />;
       })}
@@ -21,5 +21,6 @@ export async function getStaticProps() {
     props: {
       flowers: flowers ?? [],
     },
+    revalidate: 60,
   };
 }

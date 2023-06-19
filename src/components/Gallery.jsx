@@ -8,7 +8,7 @@ import "swiper/css/effect-coverflow";
 export default function Gallery({ galleries }) {
   return (
     <div className="w-full">
-      <h1 className="text-center font-bold py-10 text-3xl ">Galeri kami</h1>
+      <h1 className="py-10 text-3xl font-bold text-center ">Galeri kami</h1>
       <div className="">
         <Swiper
           centeredSlides
@@ -25,19 +25,25 @@ export default function Gallery({ galleries }) {
           modules={[EffectCoverflow]}
         >
           <div className="swiper-wrapper">
-            {galleries.map((img, idx) => {
-              return (
-                <SwiperSlide key={`imgId.${idx}`}>
-                  <Image
-                    width={200}
-                    height={300}
-                    src={`${STRAPI_URL}${img.data.attributes.url}`}
-                    alt="Photo by Claudio Schwarz on Unsplash"
-                    className="inset-0 h-full w-full object-cover object-center rounded"
-                  />
-                </SwiperSlide>
-              );
-            })}
+            {galleries ? (
+              <>
+                {galleries.map((img, idx) => {
+                  return (
+                    <SwiperSlide key={`imgId.${idx}`}>
+                      <Image
+                        width={200}
+                        height={300}
+                        src={`${STRAPI_URL}${img.data.attributes.url}`}
+                        alt="Photo by Claudio Schwarz on Unsplash"
+                        className="inset-0 object-cover object-center w-full h-full rounded"
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </Swiper>
       </div>

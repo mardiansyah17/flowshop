@@ -51,19 +51,19 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
   }, [token]);
 
   return (
-    <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
-      <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
+    <div className="px-4 2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 ">
+      <div className="flex flex-col items-center justify-center gap-8 lg:flex-row">
         {/* <!-- Description Div --> */}
 
-        <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
-          <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
+        <div className="items-center w-full sm:w-96 md:w-8/12 lg:w-6/12">
+          <h2 className="mt-4 text-3xl font-semibold leading-7 text-gray-800 lg:text-4xl lg:leading-9">
             {title}
           </h2>
 
-          <div className=" flex flex-row justify-between  mt-5">
-            <div className=" flex flex-row space-x-3">
+          <div className="flex flex-row justify-between mt-5 ">
+            <div className="flex flex-row space-x-3 ">
               <svg
-                className=" cursor-pointer"
+                className="cursor-pointer "
                 width="20"
                 height="21"
                 viewBox="0 0 20 21"
@@ -76,7 +76,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 />
               </svg>
               <svg
-                className=" cursor-pointer"
+                className="cursor-pointer "
                 width="20"
                 height="21"
                 viewBox="0 0 20 21"
@@ -89,7 +89,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 />
               </svg>
               <svg
-                className=" cursor-pointer"
+                className="cursor-pointer "
                 width="20"
                 height="21"
                 viewBox="0 0 20 21"
@@ -102,7 +102,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 />
               </svg>
               <svg
-                className=" cursor-pointer"
+                className="cursor-pointer "
                 width="20"
                 height="21"
                 viewBox="0 0 20 21"
@@ -115,7 +115,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 />
               </svg>
               <svg
-                className=" cursor-pointer"
+                className="cursor-pointer "
                 width="20"
                 height="21"
                 viewBox="0 0 20 21"
@@ -128,13 +128,13 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 />
               </svg>
             </div>
-            <p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
+            <p className="text-base font-normal leading-4 text-gray-700 duration-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:underline hover:text-gray-800">
               22 reviews
             </p>
           </div>
 
-          <p className=" font-normal text-base leading-6 text-gray-600 mt-7">{description}</p>
-          <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">{price}</p>
+          <p className="text-base font-normal leading-6 text-gray-600 mt-7">{description}</p>
+          <p className="mt-6 text-xl font-semibold leading-5 lg:text-2xl lg:leading-6">{price}</p>
 
           <button
             onClick={async () => {
@@ -145,7 +145,7 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
                 .then((res) => res.json())
                 .then((res) => setToken(res.token));
             }}
-            className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center"
+            className="flex items-center justify-center w-full px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50"
           >
             Order
           </button>
@@ -153,26 +153,27 @@ const Page = ({ id, title, description, price, thumbnail, images }) => {
 
         {/* <!-- Preview Images Div For larger Screen--> */}
 
-        <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
-          <div className=" w-full   flex justify-center items-center relative h-80">
-            <Image
-              src={`${STRAPI_URL}${thumbnail}`}
-              className="object-contain  "
-              alt="bunga"
-              fill
-            />
+        <div className="flex flex-col w-full gap-4 sm:w-96 md:w-8/12 lg:w-6/12 lg:flex-row lg:gap-8 sm:gap-6">
+          <div className="relative flex items-center justify-center w-full h-80">
+            <Image src={`${STRAPI_URL}${thumbnail}`} className="object-contain " alt="bunga" fill />
           </div>
-          <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-            {images.data.map((img, idx) => {
-              return (
-                <div
-                  key={`imagesId.${idx}`}
-                  className="bg-gray-100 flex justify-center items-center py-4 relative h-40"
-                >
-                  <Image src={`${STRAPI_URL}${img.attributes.url}`} alt="bunga" fill />
-                </div>
-              );
-            })}
+          <div className="grid w-full grid-cols-2 gap-6 lg:w-4/12 lg:grid-cols-1 sm:grid-cols-4">
+            {images ? (
+              <>
+                {images.data.map((img, idx) => {
+                  return (
+                    <div
+                      key={`imagesId.${idx}`}
+                      className="relative flex items-center justify-center h-40 py-4 bg-gray-100"
+                    >
+                      <Image src={`${STRAPI_URL}${img.attributes.url}`} alt="bunga" fill />
+                    </div>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -184,10 +185,13 @@ export async function getStaticPaths() {
   const flowers = await fetch(`${API_URL}/flowers?populate`)
     .then((res) => res.json())
     .then((res) => res.data);
-  const paths = flowers.map((flower) => ({
-    params: { id: String(flower.id) },
-  }));
-  return { paths, fallback: false };
+  if (flowers) {
+    const paths = flowers.map((flower) => ({
+      params: { id: String(flower.id) },
+    }));
+    return { paths, fallback: true };
+  }
+  return { paths: [], fallback: true };
 }
 
 export async function getStaticProps(context) {
@@ -208,6 +212,7 @@ export async function getStaticProps(context) {
       thumbnail: thumbnail.data.attributes.url,
       images,
     },
+    revalidate: 60,
   };
 }
 
