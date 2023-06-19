@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["portofolio.mardiancode.tech"],
+    domains: ["blog.ti-bidar.com"],
   },
 };
 

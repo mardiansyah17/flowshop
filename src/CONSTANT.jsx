@@ -1,2 +1,2 @@
-export const API_URL = "https://portofolio.mardiancode.tech/api";
-export const STRAPI_URL = "https://portofolio.mardiancode.tech";
+export const API_URL = "https://blog.ti-bidar.com/api";
+export const STRAPI_URL = "https://blog.ti-bidar.com";

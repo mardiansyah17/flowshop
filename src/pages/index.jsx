@@ -21,6 +21,7 @@ export async function getStaticProps() {
   const dataGalleries = await fetch(`${API_URL}/galleries?populate=image`)
     .then((res) => res.json())
     .then((res) => res.data);
+  // console.log(dataGalleries);
   const galleries = dataGalleries.map((data) => {
     return data.attributes.image;
   });
