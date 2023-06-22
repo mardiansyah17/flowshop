@@ -11,7 +11,7 @@ const About = () => {
             Tentang kami
           </h1>
           <p className="font-normal text-base leading-6 text-gray-600 ">
-            Kami di FLoweShop bangga menyediakan bunga dan karangan bunga berkualitas terbaik untuk
+            Kami di Ure No Hana bangga menyediakan bunga dan karangan bunga berkualitas terbaik untuk
             pelanggan kami. Kami menyadari bahwa bunga adalah simbol dari emosi dan perasaan, oleh
             karena itu kami selalu berusaha untuk memberikan produk yang unik dan indah, serta
             pelayanan yang ramah dan cepat. Kami berkomitmen untuk memenuhi kebutuhan pelanggan kami
@@ -36,7 +36,7 @@ const About = () => {
             <People name={"Xena"} img={"/images/xena.jpeg"} />
           </div>
           <p className="font-normal text-base leading-6 text-gray-600 ">
-            Di FlowShop, kami bermula dari kecintaan pada keindahan bunga dan hasrat untuk
+            Di Ure No Hana, kami bermula dari kecintaan pada keindahan bunga dan hasrat untuk
             memberikan pengalaman belanja bunga yang unik bagi pelanggan kami. Kami telah tumbuh
             dari sebuah toko bunga kecil menjadi toko bunga terkemuka di Indonesia, dengan fokus
             pada kualitas, keramahan, dan kreativitas dalam setiap produk dan layanan kami. Kami

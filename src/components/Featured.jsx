@@ -10,7 +10,7 @@ export default function Featured() {
           <div className="flex justify-center ">
             <div className="text-center max-w-[700px]">
               <h2 className="text-3xl font-bold mb-6 text-center">
-                Apa keunggulan<u className="text-blue-600"> FlowShop</u>
+                Apa keunggulan<u className="text-blue-600"> Ure No Hana</u>
               </h2>
               <p className="text-gray-500 mb-12">
                 Ditoko kami memiliki beberapa keunggulan dan memberikan yang terbaik untuk pelanggan

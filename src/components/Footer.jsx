@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="bg-neutral-300 p-4 text-center text-neutral-700 ">
           © 2023 Copyright:
           <a className="text-neutral-800 " href="https://tailwind-elements.com/">
-            FlowShop
+            Ure No Hana
           </a>
         </div>
       </footer>

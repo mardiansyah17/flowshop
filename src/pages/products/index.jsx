@@ -17,6 +17,7 @@ export async function getStaticProps() {
   const flowers = await fetch(`${API_URL}/flowers?populate=thumbnail`)
     .then((res) => res.json())
     .then((res) => res.data);
+  console.log(`${API_URL}/flowers?populate=thumbnail`);
   return {
     props: {
       flowers: flowers ?? [],

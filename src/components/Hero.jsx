@@ -94,8 +94,8 @@ export default function Hero() {
                 }}
               >
                 <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
-                  Toko bunga <br />
-                  <span className="text-blue-600">Flowshop</span>
+
+                  <span className="text-blue-600">Ure No Hana</span>
                 </h1>
                 <div className="">
                   <Link
