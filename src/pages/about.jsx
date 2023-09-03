@@ -20,7 +20,7 @@ const About = () => {
           additionalMetaTags={[
             {
               name: 'keywords',
-              content: 'tentang kami, toko bunga online, bunga segar, universitas bina darma, Muhammad Mardiansyah, Kanero, Yosandra, Xena, Dina, Ure no Hana',
+              content: 'tentang kami, toko bunga online palembang, bucket palembang, bucket bunga palembang, bunga segar, universitas bina darma, Muhammad Mardiansyah, Kanero Juniar, Yosandra saputri, Syazwana Xena, Dina Dina pratami putri, Ure no Hana',
             },
             {
               name: 'robots',
