@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: http://flowshop.mardiancode.tech/
+
+# Sitemaps
+Sitemap: http://flowshop.mardiancode.tech/sitemap.xml
